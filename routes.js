@@ -14,19 +14,102 @@ const path = require('path');
  * Esto es un poco más largo
  */
 routes.get('/', (req, res  ) => {
-   res.render('index');
+    res.render('index');
+});        
+
+routes.get('/academica', (req, res  ) => {
+   res.render('academica');
 }); 
 
+routes.get('/', (req, res  ) => {
+    res.render('artes');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('ciencias_matematicas');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('comercial');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('construcciones');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('contabilidad');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('deportes');
+ });
+
+ routes.get('/', (req, res  ) => {
+    res.render('electricidad');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('electronica');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('gastronomia');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('gestion');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('humanidades');
+ }); 
 
  
-routes.get('/academica', (req, res  ) => {
-    res.render('academica');
-})
 
+ routes.get('/', (req, res  ) => {
+    res.render('industrial');
+ }); 
 
-routes.get('/deportes', (req, res  ) => {
-    res.render('deportes');
-})
+ routes.get('/', (req, res  ) => {
+    res.render('madera');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('metalisteria');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('moda');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('musica');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('plastica');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('programacion');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('promocion');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('quimica');
+ }); 
+
+ routes.get('/', (req, res  ) => {
+    res.render('sistemas');
+ }); 
+
+ 
+ 
+
 
 
 /** Exportamos todo nuestro metodo routes 
