@@ -1,35 +1,63 @@
-/** Importacion de modulos */
-const express = require('express');
-/** En este caso no ncesitamos todo el modulo de express
- * solo ocupamos su objeto de ritas, que es lo que 
- * haremos en este archivo
-  */
-const routes = express.Router();
-const path = require('path');
+module.exports = (app, passport) => {
+
+    app.get('/', (req, res  ) => {
+        res.render('index');
+    }); 
 
 
-/** Le decimos las rutas que querremos añadir a nuestro
- * servidor y su arcvhio de respuesta, si quieren más
- * imformacion sobre estas lineas me pueden llamar.
- * Esto es un poco más largo
+    
+    app.get('/academica', (req, res  ) => {
+        res.render('academica');
+    })
+
+
+    app.get('/deportes', (req, res  ) => {
+        res.render('deportes');
+    })
+
+    app.get('/login', (req, res ) => {
+		res.render('login.ejs', {
+			/** flash, es el modulo que usamos para mostrar
+			 * mensajes flash dentro de la aplicacion, como seria
+			 * el 'este usuario no existe'
+			 */
+			message: req.flash('loginMessage')
+		});
+    })
+    
+	app.post('/login', passport.authenticate('local-login', {
+		/** En caso de que el todo halla ido bien :D */
+		successRedirect: '/profile',
+		/** En caso de que halla fallado algo :c */
+		failureRedirect: '/login',
+		failureFlash: true
+    }));
+    
+    
+	//profile view
+	app.get('/profile', isLoggedIn, (req, res) => {
+		res.render('profile', {
+            user: req.user
+		});
+    });
+    
+    	// logout
+	app.get('/logout', (req, res) => {
+		req.logout();
+		res.redirect('/');
+	});
+
+
+};
+
+/** Esto, es un middleware, que nos verifica si es usuario tiene una session abierta
+ * en caso de que no, pidrá avanzar normlamente, pero en caso de que no halla inicado sesison
+ * lo rederigimos al menú de inicio
  */
-routes.get('/', (req, res  ) => {
-   res.render('index');
-}); 
+function isLoggedIn (req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
 
-
- 
-routes.get('/academica', (req, res  ) => {
-    res.render('academica');
-})
-
-
-routes.get('/deportes', (req, res  ) => {
-    res.render('deportes');
-})
-
-
-/** Exportamos todo nuestro metodo routes 
- * para que se pueda usar en otros arvhivos. 
- */
-module.exports = routes;
+	res.redirect('/');
+}

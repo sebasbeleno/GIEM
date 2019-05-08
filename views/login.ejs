@@ -1,0 +1,36 @@
+<% include partials/_head %>
+<% include partials/_menu %>
+<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+        <div class="uk-card-media-left uk-cover-container">
+            <img src="https://picsum.photos/600/400" alt="" uk-cover>
+            <canvas width="600" height="400"></canvas>
+        </div>
+        <div>
+            <div class="uk-card-body">
+                <h1 class="uk-card-title">Bienvenido de nuevo, Psicoorientador</h1>
+                <% if (message.length > 0) { %>
+                    <div class="alert alert-danger">
+                      <%= message %>
+                    </div>
+                <% } %>
+                <form action="/login" method="post">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Correo</label>
+                      <span class="uk-form-icon" uk-icon="icon: user"></span>
+                      <input type="email" name="email" id="email" class="form-control" >
+                      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Contraseña</label>
+                      <input type="password" name="password"  class="form-control" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <a href="#">Olvidé mi Contraseña</a>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    

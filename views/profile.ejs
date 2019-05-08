@@ -1,0 +1,31 @@
+<% include partials/_head %>
+<% include partials/_menu %>
+
+    <div class="container">
+      <header class="text-center">
+        <h1>Perfil, de no sé quien.</h1>
+        <a href="/logout" class="btn btn-light btn-sm">
+          Logout
+        </a>
+      </header>
+      <hr>
+      <div class="container">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title"><span class="fa fa-user"></span><%= user.local.nombre %></h3>
+              <p>
+                <strong>email</strong> : <%= user.local.email %> <br>
+                <strong>Edad</strong> : <%= user.local.edad %> <br>
+                <strong>Correo de tu psicoorientador</strong> : <%= user.local.psicoEmail %>
+              </p>
+              <a href="/logout" class="btn btn-light btn-sm">
+                Cerrar session.
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
