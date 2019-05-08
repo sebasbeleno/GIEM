@@ -14,25 +14,18 @@ const path = require('path');
  * Esto es un poco más largo
  */
 routes.get('/', (req, res  ) => {
-    res.sendFile('index.html', {
-        root: path.join(__dirname, '/public')
-    })
-   
- }); 
+   res.render('index');
+}); 
 
 
  
 routes.get('/academica', (req, res  ) => {
-    res.sendFile('academica.html', {
-        root: path.join(__dirname, '/public')
-    })
+    res.render('academica');
 })
 
 
 routes.get('/deportes', (req, res  ) => {
-    res.sendFile('deportes.html', {
-        root: path.join(__dirname, '/public')
-    })
+    res.render('deportes');
 })
 
 
