@@ -1,13 +1,17 @@
 module.exports = (app, passport) => {
 
     app.get('/', (req, res  ) => {
-        res.render('index');
+        res.render('index', {
+			page: req.url
+		});
     }); 
 
 
     
     app.get('/academica', (req, res  ) => {
-        res.render('academica');
+        res.render('academica', {
+			page: req.url
+		});
     })
 
 
@@ -21,7 +25,8 @@ module.exports = (app, passport) => {
 			 * mensajes flash dentro de la aplicacion, como seria
 			 * el 'este usuario no existe'
 			 */
-			message: req.flash('loginMessage')
+			message: req.flash('loginMessage'),
+			page: req.originalUrl
 		});
     })
     
@@ -37,7 +42,8 @@ module.exports = (app, passport) => {
 	//profile view
 	app.get('/profile', isLoggedIn, (req, res) => {
 		res.render('profile', {
-            user: req.user
+			user: req.user, 
+			page: req.originalUrl
 		});
     });
     

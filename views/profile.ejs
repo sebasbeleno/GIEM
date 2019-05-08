@@ -1,31 +1,70 @@
 <% include partials/_head %>
 <% include partials/_menu %>
 
+
     <div class="container">
-      <header class="text-center">
-        <h1>Perfil, de no sé quien.</h1>
-        <a href="/logout" class="btn btn-light btn-sm">
-          Logout
-        </a>
-      </header>
-      <hr>
-      <div class="container">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title"><span class="fa fa-user"></span><%= user.local.nombre %></h3>
-              <p>
-                <strong>email</strong> : <%= user.local.email %> <br>
-                <strong>Edad</strong> : <%= user.local.edad %> <br>
-                <strong>Correo de tu psicoorientador</strong> : <%= user.local.psicoEmail %>
-              </p>
-              <a href="/logout" class="btn btn-light btn-sm">
-                Cerrar session.
-              </a>
+      <div class="card-columns">
+        <div class="card">
+          <div class="card-body">
+            <div class="mensaje-bienvenida mb-4">
+              <p>Bienvenido de nuevo, </p>
+              <h3><%= user.local.nombre %></h3>
             </div>
+            <hr>
+            <p>
+              <strong>email</strong> : <%= user.local.email %> <br>              
+            </p>
+            <a href="/logout" class="btn btn-light btn-sm">
+              Cerrar session.
+            </a>
           </div>
         </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>Esta es tu lista de estudiantes</h3>
+            </div>
+            <ul class="uk-list uk-list-striped">
+              <li>Estudiante 1</li>
+              <li>Estudiante 2</li>
+              <li>Estudiante 3</li>
+              <li>Estudiante 4</li>
+              <li>Estudiante 5</li>
+              <li><a href="#">Ver más</a></li>
+            </ul>
+            <hr>
+            <a href="#" class="btn btn-primary btn-block">Agregar a un nuevo Estudiante</a>
+          </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h3>Estos son los últimos test realizados</h3>
+              </div>
+              <ul class="uk-list uk-list-striped">
+                <li>Estudiante 1</li>
+                <li>Estudiante 1</li>
+                <li>Estudiante 1</li>
+                <li>Estudiante 1</li>
+                <li>Estudiante 1</li>
+                <li><a href="#">Ver más</a></li>
+              </ul>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
-  </body>
-</html>
+
+   
+
+
+   
+
+
+
+<% include partials/_footer %>
