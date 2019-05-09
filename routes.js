@@ -1,4 +1,6 @@
-module.exports = (app, passport) => {
+
+const Estudiantes = require('./models/estudiantes');
+module.exports = (app, passport, Estudiantes) => {
 
     app.get('/', (req, res  ) => {
         res.render('index', {
@@ -46,12 +48,23 @@ module.exports = (app, passport) => {
 			page: req.originalUrl
 		});
     });
-    
-    	// logout
+
+  // logout
 	app.get('/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');
 	});
+
+	app.get('/estudiantes', (req, res) => {
+		res.render('estudiantes', {
+			page: req.originalUrl,
+			user: req.user
+		});
+	})
+
+
+	
+
 
 
 };

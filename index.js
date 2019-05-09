@@ -22,8 +22,10 @@ mongoose.connect(url, {
 });
 
 
-require('./config/passport')(passport);
 
+
+require('./config/passport')(passport);
+const Estudiantes = require('./models/estudiantes');
 
 //Configuraciones
 app.set('port', process.env.PORT || 8080);
@@ -56,6 +58,28 @@ app.use(flash());
 
 
 
+
+app.post('/estudiantes', (req, res) => {
+	
+
+	user: req.user
+	console.log(req.body);
+
+	let estudiantes = new Estudiantes();
+
+	estudiantes.nombre = req.body.name;
+	estudiantes.correo = req.body.email;
+	estudiantes.ti = req.body.ti;
+
+
+	console.log(req.user);
+
+	estudiantes.save((err, 	estudiantesStored ) => {
+		if (err) res.send(err)
+		
+		res.redirect('/estudiantes')
+	})
+})
 require('./routes.js')(app, passport);
 
 
