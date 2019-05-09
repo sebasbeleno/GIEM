@@ -1,21 +1,19 @@
-
-const Estudiantes = require('./models/estudiantes');
 module.exports = (app, passport, Estudiantes) => {
+
+	
+
 
     app.get('/', (req, res  ) => {
         res.render('index', {
 			page: req.url
 		});
     }); 
-
-
     
     app.get('/academica', (req, res  ) => {
         res.render('academica', {
 			page: req.url
 		});
     })
-
 
     app.get('/deportes', (req, res  ) => {
         res.render('deportes');
@@ -34,39 +32,13 @@ module.exports = (app, passport, Estudiantes) => {
     
 	app.post('/login', passport.authenticate('local-login', {
 		/** En caso de que el todo halla ido bien :D */
-		successRedirect: '/profile',
+		successRedirect: '/panel',
 		/** En caso de que halla fallado algo :c */
 		failureRedirect: '/login',
 		failureFlash: true
-    }));
-    
-    
-	//profile view
-	app.get('/profile', isLoggedIn, (req, res) => {
-		res.render('profile', {
-			user: req.user, 
-			page: req.originalUrl
-		});
-    });
-
-  // logout
-	app.get('/logout', (req, res) => {
-		req.logout();
-		res.redirect('/');
-	});
-
-	app.get('/estudiantes', (req, res) => {
-		res.render('estudiantes', {
-			page: req.originalUrl,
-			user: req.user
-		});
-	})
-
-
+	}));
 	
-
-
-
+	
 };
 
 /** Esto, es un middleware, que nos verifica si es usuario tiene una session abierta

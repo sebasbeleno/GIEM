@@ -7,7 +7,7 @@ const estuSchema = Schema({
     nombre: String,
     correo: String,
     ti: Number,
-    psicoId: {type: Schema.ObjectId, ref: "User"}
+    psicoEmail: String
 });
 
 module.exports = mongoose.model('Estudiantes', estuSchema);

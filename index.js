@@ -58,18 +58,14 @@ app.use(flash());
 
 
 
-
-app.post('/estudiantes', (req, res) => {
+app.post('/addEstudiante', (req, res) => {
 	
-
-	user: req.user
-	console.log(req.body);
-
 	let estudiantes = new Estudiantes();
 
 	estudiantes.nombre = req.body.name;
 	estudiantes.correo = req.body.email;
 	estudiantes.ti = req.body.ti;
+	estudiantes.psicoEmail =  req.body.psicoEmail;
 
 
 	console.log(req.user);
@@ -80,8 +76,9 @@ app.post('/estudiantes', (req, res) => {
 		res.redirect('/estudiantes')
 	})
 })
-require('./routes.js')(app, passport);
 
+require('./routes/index')(app, passport);
+require('./routes/panel')(app, passport);
 
 
 //Static files
