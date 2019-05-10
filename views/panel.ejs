@@ -1,7 +1,5 @@
 <% include partials/_head %>
 <% include partials/_menu %>
-
-
     <div class="container">
       <div class="card-columns">
         <div class="card">
@@ -22,16 +20,14 @@
 
         <div class="card">
           <div class="card-body">
-            <div class="card-title">
+            <di7v class="card-title">
               <h3>Esta es tu lista de estudiantes</h3>
-            </div>
+            </di7v>
             <ul class="uk-list uk-list-striped">
-              <li>Estudiante 1</li>
-              <li>Estudiante 2</li>
-              <li>Estudiante 3</li>
-              <li>Estudiante 4</li>
-              <li>Estudiante 5</li>
-              <li><a href="#">Ver más</a></li>
+              <% for(var i=0; i<estudiantes.length; i++) {%>
+                <li><%= estudiantes[i].nombre %></li>
+              <% } %>
+                <li><a href="#">Ver más</a></li>
             </ul>
             <hr>
             <a href="/estudiantes" class="btn btn-primary btn-block">Agregar a un nuevo Estudiante</a>
@@ -54,9 +50,6 @@
               </ul>
           </div>
         </div>
-
-
-
       </div>
     </div>
 

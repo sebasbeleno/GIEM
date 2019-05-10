@@ -1,10 +1,31 @@
+
 module.exports = (app, passport, Estudiantes) => {
+
+
+    const  MongoClient = require('mongodb').MongoClient
+
+    var db
+
+    MongoClient.connect('mongodb://localhost/login-node', (err, client) => {
+    if (err) return console.log(err)
+        db = client.db('login-node') // whatever your database name is
+    })
+
+   
+
     //profile view
-    app.get('/panel', isLoggedIn, (req, res) => {
-        res.render('panel', {
-            user: req.user, 
-            page: req.originalUrl
-        });
+    app.get('/panel', isLoggedIn,  (req, res) => {
+        db.collection('estudiantes').find({psicoEmail: "sebas@gmail.com"}).toArray(function(err, results) {
+            console.log(results)
+            // send HTML file populated with quotes here
+
+            res.render('panel', {
+                user: req.user, 
+                page: req.originalUrl,
+                estudiantes: results
+            });
+        })
+        
     });
 
     // logout
@@ -24,6 +45,8 @@ module.exports = (app, passport, Estudiantes) => {
 	
 
 }
+
+
 
 /** Esto, es un middleware, que nos verifica si es usuario tiene una session abierta
  * en caso de que no, pidrá avanzar normlamente, pero en caso de que no halla inicado sesison
