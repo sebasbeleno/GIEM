@@ -79,6 +79,7 @@ app.post('/addEstudiante', (req, res) => {
 
 require('./routes/index')(app, passport);
 require('./routes/panel')(app, passport);
+require('./routes/test')(app, passport);
 
 
 //Static files
