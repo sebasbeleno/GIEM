@@ -17,8 +17,7 @@ const session = require('express-session');
 const { url } = require('./config/database.js');
 
 mongoose.connect(url, {
-	//NO mostrar error de mensaje
-	useMongoClient: true
+
 });
 
 

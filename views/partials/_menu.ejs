@@ -33,9 +33,9 @@
 
 }
 </style>
-<nav class="uk-navbar-container uk-margin" uk-navbar>
-        <div class="uk-navbar-center">
-          <div class="uk-navbar-center-left"><div>
+<nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar">
+          <div class="uk-navbar-left"><div>
               <ul class="uk-navbar-nav">
                   <li>
                       <a href="ramas.html">Ramas</a>
@@ -52,7 +52,7 @@
                   </li>
               </ul>
           </div></div>
-        <a class="uk-navbar-item uk-logo" href="/">GIEM</a>
+        <a class="uk-navbar-item uk-logo" href="/"></a>
         <div class="uk-navbar-center-right"><div>
             <ul class="uk-navbar-nav">
               <li>
@@ -78,16 +78,21 @@
                       <li><a href="/moda">Moda</a></li>
                     </ul>
                 </div>
+          
             </li>
-            </ul>
-           
             <% if(page == '/login' || page == '/panel' || page == '/estudiantes') {  %>
               
-            <% } else { %>
-                <span class="navbar-text">
-                    <a href="/login" class="btn btn-primary">Ingresar</a>
-                </span>
-            <% } %>
+              <% } else { %>
+                 <ul class="uk-navbar-nav">
+                   <li>
+                     <a href="/login" class="uk-navbar-item ">Ingresar</a>
+                   </li>
+                 </ul>
+                  </span>
+              <% } %>
+            </ul>
+         
+          
            
         </div></div>
     </div>
