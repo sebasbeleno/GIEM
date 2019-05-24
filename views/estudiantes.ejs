@@ -1,51 +1,54 @@
 <% include partials/_head %>
-<% include partials/_menu %>
+    <% include partials/_menu %>
 
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h1>Tus estudiantes</h1>
-                    </div>
-                    <div class="uk-list uk-list-striped">
-                        <li>Estudiante 1</li>
-                        <li>Estudiante 2</li>
-                        <li>Estudiante 3</li>
-                        <li>Estudiante 4</li>
-                        <li>Estudiante 5</li>
-                        <li>Estudiante 6</li>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h1>Agregar un nuevo estudiante</h1>
-                    </div>
-                    <form action="/addEstudiante" method="post">
-                        <div class="form-group mt-4">
-                            <label for="name">Nombre del estudiante</label>
-                            <input type="text" name="name" id="name" class="form-control">
-                            <br>
-                            <label for="email">Correo electronico del estudiante</label>
-                            <input type="email" name="email" id="email" class="form-control">
-                            <br>
-                            <label for="email">T.I del estudiante</label>
-                            <input type="number" name="ti" id="ti" class="form-control">
-                            <input hidden type="text" name="psicoEmail" value="<%= user.local.email  %>" id="">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                Agregar
-                            </button>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <di7v class="card-title">
+                                <h3>Esta es tu lista de estudiantes</h3>
+                            </di7v>
+                            <ul class="uk-list uk-list-striped">
+                                <% for(var i=0; i<estudiantes.length; i++) {%>
+                                    <li>
+                                        <%= estudiantes[i].nombre %>
+                                    </li>
+                                    <% } %>
+                                      
+                            </ul>
+                            <hr>
+                            <a href="/estudiantes" class="btn btn-primary btn-block">Agregar a un nuevo Estudiante</a>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h1>Agregar un nuevo estudiante</h1>
+                            </div>
+                            <form action="/addEstudiante" method="post">
+                                <div class="form-group mt-4">
+                                    <label for="name">Nombre del estudiante</label>
+                                    <input type="text" name="name" id="name" class="form-control">
+                                    <br>
+                                    <label for="email">Correo electronico del estudiante</label>
+                                    <input type="email" name="email" id="email" class="form-control">
+                                    <br>
+                                    <label for="email">T.I del estudiante</label>
+                                    <input type="number" name="ti" id="ti" class="form-control">
+                                    <input hidden type="text" name="psicoEmail" value="<%= user.local.email  %>" id="">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                    Agregar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<% include partials/_footer %>
+        <% include partials/_footer %>

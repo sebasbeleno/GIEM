@@ -37,11 +37,21 @@ module.exports = (app, passport, Estudiantes) => {
 		res.redirect('/');
 	});
 
-	app.get('/estudiantes', (req, res) => {
-		res.render('estudiantes', {
-            user: req.user, 
-            page: req.originalUrl
-        });
+	app.get('/estudiantes',  (req, res) => {
+
+        db.collection('estudiantes').find({psicoEmail: "sebasbeleno15@gmail.com"}).toArray(function(err, results){
+             
+            if(err) console.error(err)
+                
+            console.log(results)
+
+            res.render('estudiantes', {
+                user: req.user, 
+                page: req.originalUrl,
+                estudiantes: results
+            });
+        })
+
 	})
 
 	
