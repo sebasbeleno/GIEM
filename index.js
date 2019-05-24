@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 Usamos en omodulo de Mirgan para que nos imprima por consola
 las petiociones del usuario.
 */
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 
 

@@ -15,7 +15,10 @@ module.exports = (app, passport, Estudiantes) => {
 
     //profile view
     app.get('/panel', isLoggedIn,  (req, res) => {
-        db.collection('estudiantes').find({psicoEmail: "sebas@gmail.com"}).toArray(function(err, results) {
+        db.collection('estudiantes').find({psicoEmail: "sebasbeleno15@gmail.com"}).toArray(function(err, results) {
+            
+            if(err) console.error(err)
+
             console.log(results)
             // send HTML file populated with quotes here
 
