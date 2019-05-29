@@ -17,14 +17,14 @@ const session = require('express-session');
 const { url } = require('./config/database.js');
 
 mongoose.connect(url, {
-
+	
 });
+const Estudiantes = require('./models/estudiantes');
 
 
 
 
 require('./config/passport')(passport);
-const Estudiantes = require('./models/estudiantes');
 
 //Configuraciones
 app.set('port', process.env.PORT || 8080);

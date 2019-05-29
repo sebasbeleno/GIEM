@@ -164,7 +164,7 @@ module.exports = (app, passport, Estudiantes) => {
     })
   );
 
-  app.post('/loginEStu',  passport.authenticate("estu-login",  {
+  app.post('/loginEStu',  passport.authenticate("estu-login", {
     successRedirect: "/perfil",
   
     failureRedirect: "/login",

@@ -23,12 +23,11 @@ module.exports = function (passport) {
       done(err, user);
     });
 
-
-
+    Estudiantes.findById(id, function (err, estu) {
+      done(err, estu);
+    });
+    
   });
-
-
- 
 
   // login... Más de lo mismo en SIngup
   passport.use('local-login', new LocalStrategy({
@@ -36,8 +35,6 @@ module.exports = function (passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
-
-  
 
   function (req, email, password, done) {
     User.findOne({'local.email': email}, function (err, user) {
@@ -47,33 +44,37 @@ module.exports = function (passport) {
        */
       if (!user) {
         return done(null, false, req.flash('loginMessage', 'Datos incorrectos'))
+      
       }
       if (!user.validPassword(password)) {
         return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
+
       }
       return done(null, user);
+  
     });
   }));
 
-  passport.use('estu-login', new LocalStrategy( {
+  passport.use('estu-login', new LocalStrategy({
     usernameField: 'emailEstu',
     passwordField: 'passwordEstu', 
-    passReqToCallback: true
-  }, 
-  
+    passReqToCallback: true 
+  },  
   function (req, email, password, done) {
-
+    console.log("Correo: " + email + ", password: " + password )
     Estudiantes.findOne({'estudiantes.correo': email}, function(err, estu){
       if(err) { return done(err) }
-
-
+      console.log("Estos son los datos que encontré: " + estu)
       if (!estu) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!estu.validPassword(password)) {
+        console.log("Cant find a student")
         return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
       }
-      return done(null, estu)
+      if (!estu.validasContra(password)) {
+        console.log("password incorrect")
+        return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
+      }
+        console.log("Working")
+        return done(null, estu)      
     })
   }))
 }
