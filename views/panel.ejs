@@ -18,14 +18,20 @@
           </div>
         </div>
 
+
+    
         <div class="card">
           <div class="card-body">
             <di7v class="card-title">
               <h3>Esta es tu lista de estudiantes</h3>
+              <p>
+                <%= estudiantes[0] %>
+              </p>
+      
             </di7v>
             <ul class="uk-list uk-list-striped">
               <% for(var i=0; i<estudiantes.length; i++) {%>
-                <li><%= estudiantes[i].nombre %></li>
+                <li><%= estudiantes[i].estudiantes.nombre %></li>
               <% } %>
                 <li><a href="#">Ver más</a></li>
             </ul>
@@ -54,7 +60,11 @@
     </div>
 
    
-
+    <% if(estudiantes) { %>
+      <script>
+        console.log("<%= estudiantes[0].estudiantes.nombre %>")  
+      </script>
+    <%} %>
 
    
 

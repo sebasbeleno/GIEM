@@ -19,7 +19,7 @@ module.exports = (app, passport, Estudiantes) => {
          
             if(err) console.error(err)
 
-            //console.log(results)
+            console.log(results)
             // send HTML file populated with quotes here
             res.render('panel', {
                 user: req.user, 
