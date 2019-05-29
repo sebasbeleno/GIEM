@@ -58,21 +58,30 @@ app.use(flash());
 
 
 app.post('/addEstudiante', (req, res) => {
-	
-	let estudiantes = new Estudiantes();
 
-	estudiantes.nombre = req.body.name;
-	estudiantes.correo = req.body.email;
-	estudiantes.ti = req.body.ti;
-	estudiantes.psicoEmail =  req.body.psicoEmail;
+	Estudiantes.findOne({'estudiante.correo': req.body.email}, function (err, user) {
+		if (err) {
+			return done(err);
+		}
+		if (user) {
+			return done(null, false, req.flash('signupMessage', 'Lastima... Este email ya existe.'));
+		}else{
+			let estudiantes = new Estudiantes();
+
+			estudiantes.estudiantes.nombre = req.body.name;
+			estudiantes.estudiantes.correo = req.body.email;
+			estudiantes.estudiantes.psicoEmail =  req.body.psicoEmail;
+			estudiantes.estudiantes.ti = estudiantes.generateHash(req.ti);
 
 
-	console.log(req.user);
 
-	estudiantes.save((err, 	estudiantesStored ) => {
-		if (err) res.send(err)
-		
-		res.redirect('/estudiantes')
+
+			estudiantes.save(function (err) {
+				if (err) res.send(err)
+				
+				res.redirect('/estudiantes')
+			});
+		}
 	})
 })
 
@@ -80,6 +89,7 @@ require('./routes/index')(app, passport);
 require('./routes/panel')(app, passport);
 require('./routes/test')(app, passport);
 
+require('./routes/perfil')(app, passport);
 
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -89,7 +99,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * imprima por consola "server en el puerto 3000"
  */
 app.listen(app.get('port'), function () {
-    console.log('Server on port '+ app.get('port'));
+    console.log('GIEM iniciado en: http://localhost/'+ app.get('port'));
 
 });
 

@@ -1,8 +1,11 @@
 /** Cremos una nueva estrategia de autenticacion, este caso sera local. */
 const LocalStrategy = require('passport-local').Strategy;
-
+const passport = require('passport')
 /** Traemos los modelos que creamos anteriormente */
 const User = require('../models/user');
+
+
+const Estudiantes = require('../models/estudiantes');
 
 module.exports = function (passport) {
   
@@ -19,7 +22,11 @@ module.exports = function (passport) {
     User.findById(id, function (err, user) {
       done(err, user);
     });
+
+
+
   });
+
 
  
 
@@ -29,6 +36,9 @@ module.exports = function (passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
+
+  
+
   function (req, email, password, done) {
     User.findOne({'local.email': email}, function (err, user) {
       if (err) { return done(err); }
@@ -44,4 +54,26 @@ module.exports = function (passport) {
       return done(null, user);
     });
   }));
+
+  passport.use('estu-login', new LocalStrategy( {
+    usernameField: 'emailEstu',
+    passwordField: 'passwordEstu', 
+    passReqToCallback: true
+  }, 
+  
+  function (req, email, password, done) {
+
+    Estudiantes.findOne({'estudiantes.correo': email}, function(err, estu){
+      if(err) { return done(err) }
+
+
+      if (!estu) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!estu.validPassword(password)) {
+        return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
+      }
+      return done(null, estu)
+    })
+  }))
 }

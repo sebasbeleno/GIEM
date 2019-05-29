@@ -14,19 +14,19 @@ module.exports = (app, passport, Estudiantes) => {
    
 
     //profile view
-    app.get('/panel', isLoggedIn,  (req, res) => {
-        db.collection('estudiantes').find({psicoEmail: "sebasbeleno15@gmail.com"}).toArray(function(err, results) {
-            
+    app.get('/panel',  (req, res) => {
+        db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results) {
+         
             if(err) console.error(err)
 
-            console.log(results)
+            //console.log(results)
             // send HTML file populated with quotes here
-
             res.render('panel', {
                 user: req.user, 
                 page: req.originalUrl,
                 estudiantes: results
             });
+            
         })
         
     });
@@ -39,7 +39,7 @@ module.exports = (app, passport, Estudiantes) => {
 
 	app.get('/estudiantes',  (req, res) => {
 
-        db.collection('estudiantes').find({psicoEmail: "sebasbeleno15@gmail.com"}).toArray(function(err, results){
+        db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results){
              
             if(err) console.error(err)
                 

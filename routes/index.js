@@ -1,23 +1,23 @@
 module.exports = (app, passport, Estudiantes) => {
-  app.get("/", (req, res) => {
+  app.get("/",   (req, res) => {
     res.render("index", {
       page: req.urlbr
     });
   });
 
-  app.get("/academica", (req, res) => {
+  app.get("/academica",  (req, res) => {
     res.render("academica", {
       page: req.url
     });
   });
 
-  app.get("/administracion", (req, res) => {
+  app.get("/administracion",  (req, res) => {
     res.render("administracion", {
       page: req.url
     });
   });
 
-  app.get("/artes", (req, res) => {
+  app.get("/artes",   (req, res) => {
     res.render("artes", {
       page: req.url
     });
@@ -155,15 +155,23 @@ module.exports = (app, passport, Estudiantes) => {
     });
   });
 
-  app.post(
-    "/login",
-    passport.authenticate("local-login", {
+  app.post("/login", passport.authenticate("local-login", {
       /** En caso de que el todo halla ido bien :D */
       successRedirect: "/panel",
       /** En caso de que halla fallado algo :c */
       failureRedirect: "/login",
       failureFlash: true
     })
+  );
+
+  app.post('/loginEStu',  passport.authenticate("estu-login",  {
+    successRedirect: "/perfil",
+  
+    failureRedirect: "/login",
+    failureFlash: true
+    
+  })
+ 
   );
 };
 
