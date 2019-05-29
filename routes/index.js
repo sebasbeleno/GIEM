@@ -126,7 +126,9 @@ module.exports = (app, passport, Estudiantes) => {
   });
 
   app.get("/promocion", (req, res) => {
-    res.render("promocion");
+    res.render("promocion", {
+		page: req.url
+	});
   });
 
   app.get("/quimica", (req, res) => {
