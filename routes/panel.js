@@ -37,7 +37,7 @@ module.exports = (app, passport, Estudiantes) => {
 		res.redirect('/');
 	});
 
-	app.get('/estudiantes',  (req, res) => {
+	app.get('/estudiantes', isLoggedIn, (req, res) => {
 
         db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results){
              
