@@ -14,12 +14,12 @@ module.exports = (app, passport, Estudiantes) => {
    
 
     //profile view
-    app.get('/panel',  (req, res) => {
+    app.get('/panel', isLoggedIn, (req, res) => {
         db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results) {
          
             if(err) console.error(err)
 
-            //console.log(results)
+            console.log(results)
             // send HTML file populated with quotes here
             res.render('panel', {
                 user: req.user, 
@@ -70,5 +70,5 @@ function isLoggedIn (req, res, next) {
 		return next();
 	}
 
-	res.redirect('/');
+	res.redirect('/login');
 }
