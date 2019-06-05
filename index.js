@@ -58,7 +58,6 @@ app.use(flash());
 
 
 app.post('/addEstudiante', (req, res) => {
-
 	Estudiantes.findOne({'estudiante.correo': req.body.email}, function (err, user) {
 		if (err) {
 			return done(err);
@@ -71,7 +70,7 @@ app.post('/addEstudiante', (req, res) => {
 			estudiantes.estudiantes.nombre = req.body.name;
 			estudiantes.estudiantes.correo = req.body.email;
 			estudiantes.estudiantes.psicoEmail =  req.body.psicoEmail;
-			estudiantes.estudiantes.ti = estudiantes.generateHash(req.ti);
+			estudiantes.estudiantes.password = req.body.ti;
 
 
 
