@@ -1,9 +1,9 @@
 module.exports = (app, passport, Estudiantes) => {
     
     
-    app.get("/perfil", (req, res) => {
-      console.log(req.Estudiantes)
-      res.render("test/profile", {
+    app.get("/perfil",  (req, res) => {
+      console.log(req.estu)
+      res.render("profile", {
         page: req.url,
         user: req.estudiantes 
       });

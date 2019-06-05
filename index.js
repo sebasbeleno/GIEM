@@ -17,14 +17,13 @@ const session = require('express-session');
 const { url } = require('./config/database.js');
 
 mongoose.connect(url, {
-
+	
 });
 
 
 
 
 require('./config/passport')(passport);
-const Estudiantes = require('./models/estudiantes');
 
 //Configuraciones
 app.set('port', process.env.PORT || 8080);
@@ -39,6 +38,7 @@ las petiociones del usuario.
 */
 //app.use(morgan('dev'));
 
+const Estudiantes = require('./models/estudiantes');
 
 
 // middlewares
@@ -87,7 +87,6 @@ app.post('/addEstudiante', (req, res) => {
 require('./routes/index')(app, passport);
 require('./routes/panel')(app, passport);
 require('./routes/test')(app, passport);
-
 require('./routes/perfil')(app, passport);
 
 //Static files

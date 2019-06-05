@@ -71,19 +71,13 @@ module.exports = function (passport) {
     passwordField: 'passwordEstu', 
     passReqToCallback: true
   }, 
-  
   function (req, email, password, done) {
-
     Estudiantes.findOne({'estudiantes.correo': email}, function(err, estu){
       if(err) { return done(err) }
-
-
       if (!estu) {
-        console.log("Error here, in unsername")
         return done(null, false, { message: 'Incorrect username.' });
       }
       if (!estu.validPassword(password)) {
-        console.log("Error here, in passpword, the password is: " + password)
         return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
       }
       return done(null, estu)
