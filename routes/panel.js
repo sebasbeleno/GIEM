@@ -14,7 +14,7 @@ module.exports = (app, passport, Estudiantes) => {
    
 
     //profile view
-    app.get('/panel',  (req, res) => {
+    app.get('/panel', isLoggedIn, (req, res) => {
         db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results) {
          
             if(err) console.error(err)
@@ -37,13 +37,13 @@ module.exports = (app, passport, Estudiantes) => {
 		res.redirect('/');
 	});
 
-	app.get('/estudiantes',  (req, res) => {
+	app.get('/estudiantes', isLoggedIn, (req, res) => {
 
         db.collection('estudiantes').find({'estudiantes.psicoEmail': req.user.local.email}).toArray(function(err, results){
              
             if(err) console.error(err)
                 
-            console.log(results)
+            //console.log(results)
 
             res.render('estudiantes', {
                 user: req.user, 
@@ -70,5 +70,5 @@ function isLoggedIn (req, res, next) {
 		return next();
 	}
 
-	res.redirect('/');
+	res.redirect('/login');
 }
