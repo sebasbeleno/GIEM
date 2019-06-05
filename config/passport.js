@@ -16,6 +16,10 @@ module.exports = function (passport) {
     done(null, user.id);
   });
 
+  passport.serializeUser(function (estu, done) {
+    done(null, estu.id)
+  })
+
   // & por ultimo, esto hace lo contrario al anterior, deseariliza todo.
   // para que pueda ser accedido por el frontend
   passport.deserializeUser(function (id, done) {
@@ -25,7 +29,14 @@ module.exports = function (passport) {
 
 
 
+
   });
+
+  passport.deserializeUser(function (id, done) {
+    Estudiantes.findById(id, function (err, estu) {
+      done(err, estu)
+    })
+  })
 
 
  
@@ -68,9 +79,11 @@ module.exports = function (passport) {
 
 
       if (!estu) {
+        console.log("Error here, in unsername")
         return done(null, false, { message: 'Incorrect username.' });
       }
       if (!estu.validPassword(password)) {
+        console.log("Error here, in passpword, the password is: " + password)
         return done(null, false, req.flash('loginMessage', 'Datos incorrectos'));
       }
       return done(null, estu)
