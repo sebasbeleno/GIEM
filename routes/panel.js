@@ -6,7 +6,7 @@ module.exports = (app, passport, Estudiantes) => {
 
     var db
 
-    MongoClient.connect('mongodb://localhost/login-node', (err, client) => {
+    MongoClient.connect('mongodb+srv://admin:GIEMuser@giem-4mkhr.mongodb.net/login-node?retryWrites=true&w=majority', (err, client) => {
     if (err) return console.log(err)
         db = client.db('login-node') // whatever your database name is
     })
@@ -19,7 +19,7 @@ module.exports = (app, passport, Estudiantes) => {
          
             if(err) console.error(err)
 
-            console.log(results)
+            //console.log(results)
             // send HTML file populated with quotes here
             res.render('panel', {
                 user: req.user, 
