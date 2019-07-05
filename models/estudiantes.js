@@ -8,7 +8,11 @@ const estuSchema = new mongoose.Schema({
     nombre: String,
     correo: String,
     password: String,
-    psicoEmail: String
+    psicoEmail: String,
+    edad: Number,
+    grado: Number,
+    sexo: {type: String, enum: ['Hombre', 'Mujer', 'Sin']},
+    fecha_registro: {type: Date, default: Date.now}
   } 
 });
 
