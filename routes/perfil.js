@@ -1,8 +1,8 @@
 module.exports = (app, passport, Estudiantes) => {
     
     
-    app.get("/perfil",  (req, res) => {
-      console.log(req.estu)
+    app.get("/perfil", isLoggedIn, (req, res) => {
+      console.log("Tengo en la db, ", req.user)
       res.render("profile", {
         page: req.url,
         user: req.estudiantes 

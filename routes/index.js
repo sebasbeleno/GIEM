@@ -167,13 +167,12 @@ module.exports = (app, passport, Estudiantes) => {
   );
 
   app.post('/loginEStu',  passport.authenticate("estu-login",  {
-    successRedirect: "/perfil",
-    failureRedirect: "/login",
-    failureFlash: true
-    
-  })
- 
+      successRedirect: "/perfil",
+      failureRedirect: "/login",
+      failureFlash: true
+    })
   );
+
 };
 
 /** Esto, es un middleware, que nos verifica si es usuario tiene una session abierta
