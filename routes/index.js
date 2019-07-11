@@ -5,6 +5,12 @@ module.exports = (app, passport, Estudiantes) => {
     });
   });
 
+  app.get("/menu",  (req, res) => {
+    res.render("menu", {
+      page: req.url
+    });
+  });
+
   app.get("/academica",  (req, res) => {
     res.render("academica", {
       page: req.url
