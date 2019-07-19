@@ -52,3 +52,6 @@ Puede que se les dificulte al principio empezar con el proyecto, por eso quiero 
 ### Es todo ;)
 
 Actualizaré la documentación cuando sea necesario con nuevos comandos, dependencias etc etc. Gracias por leer. Hasta pronto uwur.
+
+
+http://www.joshuasanger.ca/libraries/moby/
