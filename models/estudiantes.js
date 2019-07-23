@@ -9,9 +9,7 @@ const estuSchema = new mongoose.Schema({
     correo: String,
     password: String,
     psicoEmail: String,
-    edad: Number,
-    grado: Number,
-    sexo: {type: String, enum: ['Hombre', 'Mujer', 'Sin']},
+    datos: Boolean,
     fecha_registro: {type: Date, default: Date.now}
   } 
 });

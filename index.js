@@ -71,11 +71,9 @@ app.post('/addEstudiante', (req, res) => {
 			estudiantes.estudiantes.correo = req.body.email;
 			estudiantes.estudiantes.psicoEmail =  req.body.psicoEmail;
 			estudiantes.estudiantes.password = req.body.ti;
+			
 
-			estudiantes.estudiantes.edad = null;
-			estudiantes.estudiantes.grado = null,
-			estudiantes.estudiantes.sexo = "Sin";
-
+			estudiantes.estudiantes.datos = false
 
 			estudiantes.save(function (err) {
 				if (err) res.send(err)
