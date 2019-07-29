@@ -113,7 +113,7 @@ app.post('/addEstudiante', (req, res) => {
 							subject: "Has sido registrado en GIEM corractamente",
 							html: data
 						};
-						console.log("html data ======================>", mainOptions.html);
+						//console.log("html data ======================>", mainOptions.html);
 						transporter.sendMail(mainOptions, function (err, info) {
 							if (err) {
 								console.log(err);
@@ -146,7 +146,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * imprima por consola "server en el puerto 3000"
  */
 app.listen(app.get('port'), function () {
-    console.log('GIEM iniciado en: http://localhost/'+ app.get('port'));
+    console.log('GIEM iniciado en: http://localhost:'+ app.get('port'));
 
 });
 
