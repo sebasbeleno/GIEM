@@ -1,54 +1,73 @@
 <% include partials/_head %>
-    <% include partials/_menu %>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <di7v class="card-title">
-                                <h3>Esta es tu lista de estudiantes</h3>
-                            </di7v>
-                            <ul class="uk-list uk-list-striped">
-                                <% for(var i=0; i<estudiantes.length; i++) {%>
-                                    <li>
-                                        <%=  estudiantes[i].estudiantes.nombre %>
-                                    </li>
-                                    <% } %>
-                                      
-                            </ul>
-                            <hr>
-                            <a href="/estudiantes" class="btn btn-primary btn-block">Agregar a un nuevo Estudiante</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1>Agregar un nuevo estudiante</h1>
-                            </div>
-                            <form action="/addEstudiante" method="post">
-                                <div class="form-group mt-4">
-                                    <label for="name">Nombre del estudiante</label>
-                                    <input type="text" name="name" id="name" class="form-control">
-                                    <br>
-                                    <label for="email">Correo electronico del estudiante</label>
-                                    <input type="email" name="email" id="email" class="form-control">
-                                    <br>
-                                    <label for="email">T.I del estudiante</label>
-                                    <input type="number" name="ti" id="ti" class="form-control">
-                                    <input hidden type="text" name="psicoEmail" value="<%= user.local.email  %>" id="">
-                                    <br>
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                    Agregar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+<script src="js/pagination.min.js"></script>
+<% include partials/_menu %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <di7v class="card-title">
+                        <h3>Esta es tu lista de estudiantes</h3>
+                    </di7v>
+                    <ul class="uk-list uk-list-striped" id="data-container">
+                                    <% for(var i=0; i<estudiantes.length; i++) {%>
+                                        <li>
+                                          <a href="/estudiante?id=<%= estudiantes[i]._id%>"><%= estudiantes[i].estudiantes.nombre %></a>
+                                        </li>
+                                      <% } %>
+                   
+                                </ul>
+                    <script type="text/template" id="template-demo">
+                                
+                           </script>
+
+                    <hr>
+                    <a href="/panel" class="btn btn-block btn-secondary">Volver</a>
                 </div>
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h1>Agregar un nuevo estudiante</h1>
+                    </div>
+                    <form action="/addEstudiante" method="post">
+                        <div class="form-group mt-4">
+                            <label for="name">Nombre del estudiante</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                            <br>
+                            <label for="email">Correo electronico del estudiante</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                            <br>
+                            <label for="email">T.I del estudiante</label>
+                            <input type="number" name="ti" id="ti" class="form-control">
+                            <input hidden type="text" name="psicoEmail" value="<%= user.local.email  %>" id="">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Agregar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <% include partials/_footer %>
+<script>
+    $('#pagination-container').pagination({
+        dataSource: [1, 2, 3, 4, 5, 6, 7, 195],
+        callback: function (data, pagination) {
+            var html = _.template($('#template-demo').html(), {
+                data: data
+            });
+            $('#data-container').html(html);
+        }
+    })
+</script>
+<% include partials/_footer %>

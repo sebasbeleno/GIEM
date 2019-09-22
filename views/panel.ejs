@@ -1,6 +1,25 @@
 <% include partials/_head %>
+<script>
+  function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+  }
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
+  </script>
+
+<link rel="stylesheet" href="js/pagination.min.js"> 
 <% include partials/_menu %>
-    <div class="container">
+    <div class="container" >
       <div class="card-columns">
         <div class="card">
           <div class="card-body">
@@ -12,6 +31,7 @@
             <p>
               <strong>email</strong> : <%= user.local.email %> <br>              
             </p>
+            <div id="txt"></div>
             <a href="/logout" class="btn btn-light btn-sm">
               Cerrar session.
             </a>
@@ -22,25 +42,25 @@
     
         <div class="card">
           <div class="card-body">
-            <di7v class="card-title">
+            <div class="card-title">
               <h3>Esta es tu lista de estudiantes</h3>
-              <p>
-                <%= estudiantes[0] %>
-              </p>
+            
       
-            </di7v>
+            </div>
             <ul class="uk-list uk-list-striped">
               <% for(var i=0; i<estudiantes.length; i++) {%>
-                <li><%= estudiantes[i].estudiantes.nombre %></li>
+                <li>
+                  <a href="/estudiante?id=<%= estudiantes[i]._id%>"><%= estudiantes[i].estudiantes.nombre %></a>
+                </li>
               <% } %>
-                <li><a href="#">Ver más</a></li>
+                <li><a href="/estudiantes">Ver más</a></li>
             </ul>
             <hr>
             <a href="/estudiantes" class="btn btn-primary btn-block">Agregar a un nuevo Estudiante</a>
           </div>
         </div>
 
-
+        <!--  
         <div class="card">
             <div class="card-body">
               <div class="card-title">
@@ -55,7 +75,7 @@
                 <li><a href="#">Ver más</a></li>
               </ul>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
 
