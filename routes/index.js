@@ -1,7 +1,8 @@
 module.exports = (app, passport, Estudiantes) => {
   app.get("/",   (req, res) => {
     res.render("index", {
-      page: req.urlbr
+      page: req.urlbr,
+      user: req.user
     });
   });
 
@@ -12,7 +13,9 @@ module.exports = (app, passport, Estudiantes) => {
   });
 
   app.get("/decirQuienEs", (req, res) => {
-    res.render("decirQuienEs")
+    res.render("decirQuienEs", {
+      user: req.user
+    })
   })
 
   app.get("/academica",  (req, res) => {
