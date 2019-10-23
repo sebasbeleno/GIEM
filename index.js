@@ -81,11 +81,7 @@ app.post('/addEstudiante', (req, res) => {
 			
 			estudiantes.save(function (err) {
 				if (err) res.send(err)
-				/**
-				 * 
-				 * NODEMAILER para el estudiante 
-				 * 
-				 */
+		
 
 				 
 				let transporter = nodeMailer.createTransport({

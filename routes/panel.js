@@ -89,6 +89,7 @@ module.exports = (app, passport, Estudiantes) => {
 
                     res.render('estudiante', {
                         datosEstudiante: datosEstudiante[0],
+                        user: req.user,
                         resultados: ordenadoPorValor
                     })
 

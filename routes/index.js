@@ -11,6 +11,10 @@ module.exports = (app, passport, Estudiantes) => {
     });
   });
 
+  app.get("/decirQuienEs", (req, res) => {
+    res.render("decirQuienEs")
+  })
+
   app.get("/academica",  (req, res) => {
     res.render("academica", {
       page: req.url
@@ -159,7 +163,8 @@ module.exports = (app, passport, Estudiantes) => {
 			 * el 'este usuario no existe'
 			 */
       message: req.flash("loginMessage"),
-      page: req.originalUrl
+      page: req.originalUrl,
+      user: req.user
     });
   });
 
