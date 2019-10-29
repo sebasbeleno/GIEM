@@ -6,6 +6,9 @@ module.exports = (app, passport, Estudiantes) => {
     });
   });
 
+
+  
+
   app.get("/menu",  (req, res) => {
     res.render("menu", {
       page: req.url
@@ -18,9 +21,16 @@ module.exports = (app, passport, Estudiantes) => {
     })
   })
 
+
+  app.get('/ramas', (req, res) => {
+    res.render("ramas", {
+      user: req.user
+    })
+  })
   app.get("/academica",  (req, res) => {
     res.render("academica", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
@@ -36,27 +46,39 @@ module.exports = (app, passport, Estudiantes) => {
     });
   });
 
-  app.get("/ciencias_matematicas", (req, res) => {
-    res.render("ciencias_matematicas", {
-      page: req.url
+  app.get("/ciencias", (req, res) => {
+    res.render("ciencias", {
+      page: req.url,
+      user: req.user
     });
   });
 
   app.get("/comercial", (req, res) => {
     res.render("comercial", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
   app.get("/construcciones", (req, res) => {
     res.render("construcciones", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
+  app.get("/procesos", (req, res) => {
+    res.render("procesos", {
+      page: req.url,
+      user: req.user
+    });
+  });
+
+
   app.get("/contabilidad", (req, res) => {
     res.render("contabilidad", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
@@ -122,19 +144,22 @@ module.exports = (app, passport, Estudiantes) => {
 
   app.get("/musica", (req, res) => {
     res.render("musica", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
   app.get("/plastica", (req, res) => {
     res.render("plastica", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
   app.get("/programacion", (req, res) => {
     res.render("programacion", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
@@ -146,7 +171,8 @@ module.exports = (app, passport, Estudiantes) => {
 
   app.get("/quimica", (req, res) => {
     res.render("quimica", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 
@@ -155,7 +181,8 @@ module.exports = (app, passport, Estudiantes) => {
 
   app.get("/sistemas", (req, res) => {
     res.render("sistemas", {
-      page: req.url
+      page: req.url,
+      user: req.user
     });
   });
 

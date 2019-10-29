@@ -96,15 +96,13 @@ a:hover{
 <nav class="nav-hide">
   <ul>
 
-    <li><a href="#">Inicio</a></li>
+    <li><a href="/">Inicio</a></li>
 
-    <li><a href="#">Ramas</a></li>
+    <li><a href="/ramas">Ramas</a></li>
 
-    <li><a href="#">Test</a></li>
 
-    <%  if(!user){ %>
-
-      <li><a href="#">Login</a></li>
+    <li><a href="/decirQuienEs">Login</a></li>
+    <%  if(user){ %>
     <% } %>
 
   </ul>
