@@ -93,7 +93,7 @@ app.post('/addEstudiante', (req, res) => {
 						/** La cuenta desde donde enviaremos el correo, en este caso
 						 * GIEMJS
 						 */
-						user: 'inemgiem@gmail.com',
+						user: 'giemtest23@gmail.com',
 						pass: 'GIEM2019'
 					}
 				});
